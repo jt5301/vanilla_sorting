@@ -8,10 +8,7 @@ body {
   align-items: flex-end;
   height:800px;
   margin-bottom: 20px;
-  /* justify-content: center;
-  height: 100%;
-  width: 100%;
-  margin: 0, 0; */
+  justify-content: center;
 }
 
 .bar{

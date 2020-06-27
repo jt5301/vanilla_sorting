@@ -1,10 +1,11 @@
 import { bubbleSortFunction } from './sortApps/bubbleSort.js'
+import { heightGenerator, buttonTimeouts } from './HelperFunctions.js'
 
 const container = document.getElementById('mainContainer')
 
 let heights = []
 
-for (let i = 0; i < 10; i++) { // initial set up for bars
+for (let i = 0; i < 50; i++) { // initial set up for bars
   const bar = document.createElement("div");
   bar.className = "bar";
   bar.id = `${i}`
@@ -17,7 +18,7 @@ for (let i = 0; i < 10; i++) { // initial set up for bars
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 50; i++) {
     heights[i] = heightGenerator()
     const bar = document.getElementById(`${i}`)
     bar.style.height = `${heights[i]}px`
@@ -29,21 +30,14 @@ reset.addEventListener('click', () => {
 
 const bubbleSort = document.getElementById('bubble')
 bubbleSort.addEventListener('click', () => {
-  const nodes = document.getElementById('buttons').childNodes
-  const buttons = []
-  for (let node of nodes) {
-    if (node.nodeName === 'BUTTON') {
-      buttons.push(node)
-    }
-  }
-  buttons.forEach((current) => {
-    current.disabled = true
-  })
-  console.log(nodes)
 
 
   const frames = []
+  console.log(frames)
   bubbleSortFunction(heights, frames)
+  console.log(frames.length)
+  buttonTimeouts(frames.length)
+
   let temp = 0
   for (let i = 0; i < frames.length; i++) {
     const bar1 = document.getElementById(frames[i][0])
@@ -75,22 +69,8 @@ bubbleSort.addEventListener('click', () => {
         break
     }
   }
-  setTimeout(() => {
-    buttons.forEach((current) => {
-      current.disabled = false
-    })
-  }, 10 * frames.length)
 
 })
-
-
-function heightGenerator() {// height between 1 & 750
-  let min = Math.ceil(750);
-  let max = Math.floor(1);
-  return (Math.floor(Math.random() * (max - min + 1)) + min)
-}
-
-
 
 
 
