@@ -4,7 +4,7 @@ const container = document.getElementById('mainContainer')
 
 let heights = []
 
-for (let i = 0; i < 100; i++) { // initial set up for bars
+for (let i = 0; i < 10; i++) { // initial set up for bars
   const bar = document.createElement("div");
   bar.className = "bar";
   bar.id = `${i}`
@@ -26,9 +26,22 @@ reset.addEventListener('click', () => {
 
 })
 
-const bubbleSort = document.getElementById('bubble')
 
+const bubbleSort = document.getElementById('bubble')
 bubbleSort.addEventListener('click', () => {
+  const nodes = document.getElementById('buttons').childNodes
+  const buttons = []
+  for (let node of nodes) {
+    if (node.nodeName === 'BUTTON') {
+      buttons.push(node)
+    }
+  }
+  buttons.forEach((current) => {
+    current.disabled = true
+  })
+  console.log(nodes)
+
+
   const frames = []
   bubbleSortFunction(heights, frames)
   let temp = 0
@@ -61,8 +74,13 @@ bubbleSort.addEventListener('click', () => {
         }, 10 * i)
         break
     }
-
   }
+  setTimeout(() => {
+    buttons.forEach((current) => {
+      current.disabled = false
+    })
+  }, 10 * frames.length)
+
 })
 
 
