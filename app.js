@@ -32,37 +32,36 @@ bubbleSort.addEventListener('click', () => {
   const frames = []
   bubbleSortFunction(heights, frames)
   let temp = 0
-  console.log(frames)
   for (let i = 0; i < frames.length; i++) {
     const bar1 = document.getElementById(frames[i][0])
     const bar2 = document.getElementById(frames[i][1])
-    if (frames[i][2] === 'start') {
-      setTimeout(() => {
-        bar1.style.backgroundColor = 'cornflowerblue'
-        bar2.style.backgroundColor = 'cornflowerblue'
-      }, 10 * i)
-      continue
+
+    switch (frames[i][2]) {
+      case 'start':
+        setTimeout(() => {
+          bar1.style.backgroundColor = 'cornflowerblue'
+          bar2.style.backgroundColor = 'cornflowerblue'
+        }, 10 * i)
+        break
+      case 'end':
+        setTimeout(() => {
+          bar1.style.backgroundColor = 'pink'
+          bar2.style.backgroundColor = 'pink'
+        }, 10 * i)
+        break
+      case 'swap1':
+        setTimeout(() => {
+          temp = bar1.style.height
+          bar1.style.height = bar2.style.height
+        }, 10 * i)
+        break
+      case 'swap2':
+        setTimeout(() => {
+          bar2.style.height = temp
+        }, 10 * i)
+        break
     }
-    if (frames[i][2] === 'end') {
-      setTimeout(() => {
-        bar1.style.backgroundColor = 'pink'
-        bar2.style.backgroundColor = 'pink'
-      }, 10 * i)
-      continue
-    }
-    if (frames[i][2] === 'swap1') {
-      setTimeout(() => {
-        temp = bar1.style.height
-        bar1.style.height = bar2.style.height
-      }, 10 * i)
-      continue
-    }
-    if (frames[i][2] === 'swap2') {
-      setTimeout(() => {
-        bar2.style.height = temp
-      }, 10 * i)
-      continue
-    }
+
   }
 })
 
