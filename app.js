@@ -1,11 +1,12 @@
 import { bubbleSortFunction } from './sortApps/bubbleSort.js'
+import { mergeSortFunction } from './sortApps/mergeSort.js'
 import { heightGenerator, buttonTimeouts } from './HelperFunctions.js'
 
 const container = document.getElementById('mainContainer')
 
 let heights = []
 
-for (let i = 0; i < 50; i++) { // initial set up for bars
+for (let i = 0; i < 8; i++) { // initial set up for bars
   const bar = document.createElement("div");
   bar.className = "bar";
   bar.id = `${i}`
@@ -24,25 +25,27 @@ reset.addEventListener('click', () => {
     bar.style.height = `${heights[i]}px`
     bar.style.backgroundColor = 'pink'
   }
+})
+
+const mergeSort = document.getElementById('merge')
+mergeSort.addEventListener('click', () => {
+  console.log(heights)
+  const sorted = mergeSortFunction(heights, 0, heights.length - 1)
+  console.log(sorted)
 
 })
 
-
 const bubbleSort = document.getElementById('bubble')
 bubbleSort.addEventListener('click', () => {
-
-
   const frames = []
-  console.log(frames)
   bubbleSortFunction(heights, frames)
-  console.log(frames.length)
+
   buttonTimeouts(frames.length)
 
   let temp = 0
   for (let i = 0; i < frames.length; i++) {
     const bar1 = document.getElementById(frames[i][0])
     const bar2 = document.getElementById(frames[i][1])
-
     switch (frames[i][2]) {
       case 'start':
         setTimeout(() => {
@@ -69,7 +72,6 @@ bubbleSort.addEventListener('click', () => {
         break
     }
   }
-
 })
 
 
