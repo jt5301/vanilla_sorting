@@ -1,4 +1,5 @@
 export function bubbleSortFunction(heights, frames) {
+
   for (let i = heights.length; i > 0; i--) {
     let swapCheck = true
     for (let k = 0; k < i - 1; k++) {
@@ -13,6 +14,7 @@ export function bubbleSortFunction(heights, frames) {
     }
     if (swapCheck) break
   }
+
 }
 
 function swap(a, b, array) {

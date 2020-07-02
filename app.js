@@ -4,36 +4,61 @@ import { heightGenerator, buttonTimeouts } from './HelperFunctions.js'
 
 const container = document.getElementById('mainContainer')
 
-let heights = []
 
-for (let i = 0; i < 8; i++) { // initial set up for bars
+const createBar = (id, height) => {
+  console.log('here')
   const bar = document.createElement("div");
   bar.className = "bar";
-  bar.id = `${i}`
-  const barHeight = heightGenerator()
-  heights.push(barHeight)
+  bar.id = `${id}`
+  const barHeight = height
   bar.style.height = `${barHeight}px`
+  return bar
+}
+
+let heights = heightGenerator(10)
+for (let i = 0; i < heights.length; i++) { // initial set up for bars
+  const bar = createBar(i, heights[i])
   container.appendChild(bar)
 }
 
 
+
+
+
+
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  for (let i = 0; i < 50; i++) {
-    heights[i] = heightGenerator()
+  heights = heightGenerator(10)
+  for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
-    bar.style.height = `${heights[i]}px`
-    bar.style.backgroundColor = 'pink'
+    bar.parentNode.removeChild(bar)
+    const newBar = createBar(i, heights[i])
+    container.appendChild(newBar)
   }
+  //reset completely removes the old bar div before installing in a new one bc of mergesort's need to rearrange bar ids
+
 })
 
 const mergeSort = document.getElementById('merge')
 mergeSort.addEventListener('click', () => {
-  console.log(heights)
-  const sorted = mergeSortFunction(heights, 0, heights.length - 1)
-  console.log(sorted)
-
+  for (let i = 0; i < heights.length; i++) {
+    const bar = document.getElementById(`${i}`)
+    console.log(bar)
+    bar.id = bar.style.height
+    //id is '__px'!
+  }
+  console.log('heights here', heights)
+  let frames = []
+  let newHeights = mergeSortFunction(heights, frames)
+  console.log(newHeights, 'sorted')
+  console.log(frames, 'frames')
+  console.log(newHeights[0])
+  for (let i = 0; i < newHeights.length; i++) {
+    const bar = document.getElementById(`${newHeights[i]}px`)
+    bar.id = `${i}`
+  }
 })
+
 
 const bubbleSort = document.getElementById('bubble')
 bubbleSort.addEventListener('click', () => {

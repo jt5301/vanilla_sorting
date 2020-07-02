@@ -1,7 +1,21 @@
-export function heightGenerator() {// height between 1 & 750
-  let min = Math.ceil(750);
-  let max = Math.floor(1);
-  return (Math.floor(Math.random() * (max - min + 1)) + min)
+export function heightGenerator(amt) {// height between 1 & 750
+  let heightHash = {}
+  let counter = 0
+  let heights = []
+  while (counter < amt) {
+    let min = Math.ceil(750);
+    let max = Math.floor(1);
+
+    let num = (Math.floor(Math.random() * (max - min + 1)) + min)
+    if (!heightHash[num]) {
+      heightHash[num] = true
+      heights.push(num)
+      counter += 1
+    }
+    else continue
+  }
+  return heights
+
 }
 
 export function buttonTimeouts(frameLength) {
