@@ -1,10 +1,11 @@
-function mergeSort(array) {
-  if (array.length <= 1) return array
+export function mergeSortFunction(heights, frames) {
+  if (heights.length <= 1) return heights
 
-  let auxArray = array.slice()
-  mergeSortHelper(array, auxArray, 0, array.length - 1)
-  return array
+  let auxArray = heights.slice()
+  mergeSortHelper(heights, auxArray, 0, heights.length - 1)
+  return heights
 }
+
 function mergeSortHelper(main, auxArray, startIndex, endIndex) {
   if (startIndex === endIndex) return
   let middleIndex = Math.floor((startIndex + endIndex) / 2)
