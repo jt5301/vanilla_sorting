@@ -6,29 +6,26 @@ const container = document.getElementById('mainContainer')
 
 
 const createBar = (id, height) => {
-  console.log('here')
   const bar = document.createElement("div");
   bar.className = "bar";
   bar.id = `${id}`
+  bar.name = `${id}`
   const barHeight = height
   bar.style.height = `${barHeight}px`
   return bar
 }
 
-let heights = heightGenerator(10)
-for (let i = 0; i < heights.length; i++) { // initial set up for bars
+let heights = heightGenerator(6)
+
+// initial set up for bars
+for (let i = 0; i < heights.length; i++) {
   const bar = createBar(i, heights[i])
   container.appendChild(bar)
 }
 
-
-
-
-
-
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  heights = heightGenerator(10)
+  heights = heightGenerator(5)
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
     bar.parentNode.removeChild(bar)
@@ -43,20 +40,41 @@ const mergeSort = document.getElementById('merge')
 mergeSort.addEventListener('click', () => {
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
-    console.log(bar)
     bar.id = bar.style.height
+    bar.name = bar.style.height
+    console.log(bar)
+
     //id is '__px'!
   }
-  console.log('heights here', heights)
   let frames = []
-  let newHeights = mergeSortFunction(heights, frames)
-  console.log(newHeights, 'sorted')
-  console.log(frames, 'frames')
-  console.log(newHeights[0])
-  for (let i = 0; i < newHeights.length; i++) {
-    const bar = document.getElementById(`${newHeights[i]}px`)
-    bar.id = `${i}`
+  mergeSortFunction(heights, frames)
+  for (let i = 0; i < frames.length; i++) {
+    switch (frames[i][1]) {
+      case 'start':
+        setTimeout(() => {
+          frames[i][0].forEach((current) => {
+            const bar = document.getElementById(`${current}px`)
+            bar.style.backgroundColor = 'cornflowerblue'
+          })
+        }, 2000 * i)
+        break
+
+      case 'end':
+        setTimeout(() => {
+          frames[i][0].forEach((current) => {
+            const bar = document.getElementById(`${current}px`)
+            bar.style.backgroundColor = 'pink'
+
+          })
+        }, 2000 * i)
+        break
+    }
   }
+  // switch(frames[i][2])
+  // for (let i = 0; i < newHeights.length; i++) {
+  //   const bar = document.getElementById(`${newHeights[i]}px`)
+  //   bar.id = `${i}`
+  // }
 })
 
 

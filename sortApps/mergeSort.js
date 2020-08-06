@@ -4,7 +4,6 @@ export function mergeSortFunction(heights, frames) {
   let firstHalf = mergeSortFunction(heights.slice(0, Math.floor(heights.length / 2)), frames)
 
   let secondHalf = mergeSortFunction(heights.slice(Math.floor(heights.length / 2)), frames)
-  let merged = firstHalf.concat(secondHalf)
 
   return merger(firstHalf, secondHalf, frames)
 }
@@ -13,7 +12,6 @@ export function mergeSortFunction(heights, frames) {
 function merger(arr1, arr2, frames) {
   let concated = arr1.concat(arr2)
   let flattened = concated.flat()
-  console.log(flattened)
   frames.push([flattened, 'start'])//get bars to initially color
   const sorted = []
   let p1 = 0
@@ -22,10 +20,10 @@ function merger(arr1, arr2, frames) {
     if (arr1[p1] < arr2[p2]) {
       sorted.push(arr1[p1])
       p1 += 1
-
     }
     else {
       sorted.push(arr2[p2])
+
       p2 += 1
     }
   }
@@ -37,7 +35,9 @@ function merger(arr1, arr2, frames) {
     sorted.push(arr2[p2])
     p2++
   }
+
   frames.push([sorted, 'end'])//recolor them
+
   return sorted
 }
 
