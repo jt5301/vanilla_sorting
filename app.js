@@ -15,7 +15,7 @@ const createBar = (id, height) => {
   return bar
 }
 
-let heights = heightGenerator(6)
+let heights = heightGenerator(5)
 
 // initial set up for bars
 for (let i = 0; i < heights.length; i++) {
@@ -38,44 +38,52 @@ reset.addEventListener('click', () => {
 
 const mergeSort = document.getElementById('merge')
 mergeSort.addEventListener('click', () => {
-  for (let i = 0; i < heights.length; i++) {
-    const bar = document.getElementById(`${i}`)
-    bar.id = bar.style.height
-    bar.name = bar.style.height
-    console.log(bar)
-
-    //id is '__px'!
-  }
-  let frames = []
+  const frames = []
   mergeSortFunction(heights, frames)
-  for (let i = 0; i < frames.length; i++) {
-    switch (frames[i][1]) {
-      case 'start':
-        setTimeout(() => {
-          frames[i][0].forEach((current) => {
-            const bar = document.getElementById(`${current}px`)
-            bar.style.backgroundColor = 'cornflowerblue'
-          })
-        }, 2000 * i)
-        break
-
-      case 'end':
-        setTimeout(() => {
-          frames[i][0].forEach((current) => {
-            const bar = document.getElementById(`${current}px`)
-            bar.style.backgroundColor = 'pink'
-
-          })
-        }, 2000 * i)
-        break
-    }
-  }
-  // switch(frames[i][2])
-  // for (let i = 0; i < newHeights.length; i++) {
-  //   const bar = document.getElementById(`${newHeights[i]}px`)
-  //   bar.id = `${i}`
-  // }
+  console.log(frames)
 })
+
+// switch(frames[i][2])
+// for (let i = 0; i < newHeights.length; i++) {
+//   const bar = document.getElementById(`${newHeights[i]}px`)
+//   bar.id = `${i}`
+// }
+
+// for (let i = 0; i < heights.length; i++) {
+//   const bar = document.getElementById(`${i}`)
+//   bar.id = bar.style.height
+//   console.log(bar)
+
+//   //id is '__px'!
+// }
+// let frames = []
+// mergeSortFunction(heights, frames)
+// for (let i = 0; i < frames.length; i++) {
+//   switch (frames[i][1]) {
+//     case 'start':
+//       setTimeout(() => {
+//         frames[i][0].forEach((current) => {
+//           const bar = document.getElementById(`${current}px`)
+//           bar.style.backgroundColor = 'cornflowerblue'
+//         })
+//       }, 2000 * i)
+//       break
+//     case 'sort':
+//       setTimeout(() => {
+//         console.log(frames[i])
+//       })
+//       break
+//     case 'end':
+//       setTimeout(() => {
+//         frames[i][0].forEach((current) => {
+//           const bar = document.getElementById(`${current}px`)
+//           bar.style.backgroundColor = 'pink'
+
+//         })
+//       }, 2000 * i)
+//       break
+//   }
+// }
 
 
 const bubbleSort = document.getElementById('bubble')
