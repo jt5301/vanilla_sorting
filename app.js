@@ -1,5 +1,6 @@
 import { bubbleSortFunction } from './sortApps/bubbleSort.js'
 import { mergeSortFunction } from './sortApps/mergeSort.js'
+import { quickSortFunction } from './sortApps/quickSort.js'
 import { heightGenerator, buttonTimeouts } from './HelperFunctions.js'
 
 const container = document.getElementById('mainContainer')
@@ -15,7 +16,7 @@ const createBar = (id, height) => {
   return bar
 }
 
-let heights = heightGenerator(30)
+let heights = heightGenerator(10)
 
 // initial set up for bars
 for (let i = 0; i < heights.length; i++) {
@@ -25,15 +26,20 @@ for (let i = 0; i < heights.length; i++) {
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  heights = heightGenerator(30)
+  heights = heightGenerator(10)
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
     bar.parentNode.removeChild(bar)
     const newBar = createBar(i, heights[i])
     container.appendChild(newBar)
   }
-  //reset completely removes the old bar div before installing in a new one bc of mergesort's need to rearrange bar ids
+})
 
+const quickSort = document.getElementById('quick')
+quickSort.addEventListener('click', () => {
+  const frames = []
+  quickSortFunction(heights, frames)
+  console.log(heights)
 })
 
 const mergeSort = document.getElementById('merge')
@@ -48,14 +54,14 @@ mergeSort.addEventListener('click', () => {
             const bar = document.getElementById(`${k}`)
             bar.style.backgroundColor = 'cornflowerblue'
           }
-        }, 100 * i)
+        }, 50 * i)
         break
       case 'sort':
         setTimeout(() => {
           let sortBar = document.getElementById(`${frames[i][0]}`)
           console.log(frames)
           sortBar.style.height = `${frames[i][1]}px`
-        }, 100 * i)
+        }, 50 * i)
         break
       case 'end':
         setTimeout(() => {
@@ -63,7 +69,7 @@ mergeSort.addEventListener('click', () => {
             const bar = document.getElementById(`${k}`)
             bar.style.backgroundColor = 'pink'
           }
-        }, 100 * i)
+        }, 50 * i)
         break
     }
   }
@@ -86,24 +92,24 @@ bubbleSort.addEventListener('click', () => {
         setTimeout(() => {
           bar1.style.backgroundColor = 'cornflowerblue'
           bar2.style.backgroundColor = 'cornflowerblue'
-        }, 10 * i)
+        }, 50 * i)
         break
       case 'end':
         setTimeout(() => {
           bar1.style.backgroundColor = 'pink'
           bar2.style.backgroundColor = 'pink'
-        }, 10 * i)
+        }, 50 * i)
         break
       case 'swap1':
         setTimeout(() => {
           temp = bar1.style.height
           bar1.style.height = bar2.style.height
-        }, 10 * i)
+        }, 50 * i)
         break
       case 'swap2':
         setTimeout(() => {
           bar2.style.height = temp
-        }, 10 * i)
+        }, 50 * i)
         break
     }
   }

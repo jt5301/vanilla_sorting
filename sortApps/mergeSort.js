@@ -26,7 +26,6 @@ function doMerge(mainArray, auxArray, startIndex, middleIndex, endIndex, frames)
       mainArray[k] = auxArray[i]
       k += 1
       i += 1
-
     }
     else {
       mainArray[k] = auxArray[j]
