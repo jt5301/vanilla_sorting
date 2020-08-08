@@ -39,38 +39,46 @@ const quickSort = document.getElementById('quick')
 quickSort.addEventListener('click', () => {
   const frames = []
   quickSortFunction(heights, frames)
-  console.log(frames)
   for (let i = 0; i < frames.length; i++) {
     switch (frames[i][frames[i].length - 1]) {
       case 'start':
         setTimeout(() => {
-          console.log('start')
           const bar = document.getElementById(`${frames[i][0]}`)
           bar.style.backgroundColor = 'cornflowerblue'
         }, 1000 * i)
         break
       case 'color1':
         setTimeout(() => {
-          console.log('color1')
           const bar = document.getElementById(`${frames[i][1]}`)
           bar.style.backgroundColor = 'cornflowerblue'
         }, 1000 * i)
         break
-      case 'height1':
-        let temp = ""
-        setTimeout(() => {
-          console.log(frames[i])
-          const bar1 = document.getElementById(`${frames[i][0]}`)
-          const bar2 = document.getElementById(`${frames[i][1]}`)
-          temp = bar1.style.height
-          bar1.style.height = bar2.style.height
-        }, 1000 * i)
+      case 'noSwap':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][1]}`)
-          bar.style.height = temp
+          bar.style.backgroundColor = 'pink'
+        }, 1000 * i)
+        break
+      case 'height1':
+        setTimeout(() => {
+          const bar = document.getElementById(`${frames[i][0]}`)
+          bar.style.backgroundColor = 'cornflowerblue'
+          bar.style.height = `${frames[i][3]}px`
         }, 1000 * i)
         break
       case 'height2':
+        setTimeout(() => {
+          const bar = document.getElementById(`${frames[i][1]}`)
+          bar.style.height = `${frames[i][2]}px`
+        }, 1000 * i)
+        break
+      case 'frameRecolor':
+        setTimeout(() => {
+          const bar = document.getElementById(`${frames[i][0]}`)
+          const bar2 = document.getElementById(`${frames[i][1]}`)
+          bar.style.backgroundColor = 'pink'
+          bar2.style.backgroundColor = 'pink'
+        }, 1000 * i)
         break
     }
   }
