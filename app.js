@@ -16,7 +16,7 @@ const createBar = (id, height) => {
   return bar
 }
 
-let heights = heightGenerator(10)
+let heights = heightGenerator(100)
 
 // initial set up for bars
 for (let i = 0; i < heights.length; i++) {
@@ -26,7 +26,7 @@ for (let i = 0; i < heights.length; i++) {
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  heights = heightGenerator(10)
+  heights = heightGenerator(100)
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
     bar.parentNode.removeChild(bar)
@@ -45,32 +45,32 @@ quickSort.addEventListener('click', () => {
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][0]}`)
           bar.style.backgroundColor = 'cornflowerblue'
-        }, 1000 * i)
+        }, 10 * i)
         break
       case 'color1':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][1]}`)
           bar.style.backgroundColor = 'cornflowerblue'
-        }, 1000 * i)
+        }, 10 * i)
         break
       case 'noSwap':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][1]}`)
           bar.style.backgroundColor = 'pink'
-        }, 1000 * i)
+        }, 10 * i)
         break
       case 'height1':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][0]}`)
           bar.style.backgroundColor = 'cornflowerblue'
           bar.style.height = `${frames[i][3]}px`
-        }, 1000 * i)
+        }, 10 * i)
         break
       case 'height2':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][1]}`)
           bar.style.height = `${frames[i][2]}px`
-        }, 1000 * i)
+        }, 10 * i)
         break
       case 'frameRecolor':
         setTimeout(() => {
@@ -78,7 +78,7 @@ quickSort.addEventListener('click', () => {
           const bar2 = document.getElementById(`${frames[i][1]}`)
           bar.style.backgroundColor = 'pink'
           bar2.style.backgroundColor = 'pink'
-        }, 1000 * i)
+        }, 10 * i)
         break
     }
   }
@@ -96,14 +96,14 @@ mergeSort.addEventListener('click', () => {
             const bar = document.getElementById(`${k}`)
             bar.style.backgroundColor = 'cornflowerblue'
           }
-        }, 50 * i)
+        }, 10 * i)
         break
       case 'sort':
         setTimeout(() => {
           let sortBar = document.getElementById(`${frames[i][0]}`)
           console.log(frames)
           sortBar.style.height = `${frames[i][1]}px`
-        }, 50 * i)
+        }, 10 * i)
         break
       case 'end':
         setTimeout(() => {
@@ -111,7 +111,7 @@ mergeSort.addEventListener('click', () => {
             const bar = document.getElementById(`${k}`)
             bar.style.backgroundColor = 'pink'
           }
-        }, 50 * i)
+        }, 10 * i)
         break
     }
   }
