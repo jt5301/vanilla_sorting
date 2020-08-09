@@ -30,12 +30,9 @@ function pivot(array, frames, start = 0, end = array.length - 1) {
       frames.push([swapIndex, i, 'noSwap'])
     }
   }
-  console.log('arrayherebefore', array)
   const startHeight = array[start]
   const swapIHeight = array[swapIndex]
   swap(start, swapIndex, array)
-  // console.log(startHeight, swapIndexHeight)
-  console.log('arrayhere', array)
   frames.push([swapIndex, 'start'])
   frames.push([start, swapIndex, startHeight, swapIHeight, 'height1'])
   frames.push([start, swapIndex, startHeight, swapIHeight, 'height2'])

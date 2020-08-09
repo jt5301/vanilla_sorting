@@ -3,7 +3,7 @@ export function heightGenerator(amt) {// height between 1 & 750
   let counter = 0
   let heights = []
   while (counter < amt) {
-    let min = Math.ceil(750);
+    let min = Math.ceil(500);
     let max = Math.floor(1);
 
     let num = (Math.floor(Math.random() * (max - min + 1)) + min)
