@@ -1,8 +1,9 @@
 import { bubbleSortFunction } from './sortApps/bubbleSort.js'
 import { mergeSortFunction } from './sortApps/mergeSort.js'
 import { quickSortFunction } from './sortApps/quickSort.js'
+import { insertionSortFunction } from './sortApps/insertionSort.js'
+import { selectionSortFunction } from './sortApps/selectionSort.js'
 import { heightGenerator, buttonTimeouts } from './HelperFunctions.js'
-
 const container = document.getElementById('mainContainer')
 
 
@@ -16,7 +17,7 @@ const createBar = (id, height) => {
   return bar
 }
 
-let heights = heightGenerator(50)
+let heights = heightGenerator(10)
 
 // initial set up for bars
 for (let i = 0; i < heights.length; i++) {
@@ -26,7 +27,7 @@ for (let i = 0; i < heights.length; i++) {
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  heights = heightGenerator(50)
+  heights = heightGenerator(10)
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
     bar.parentNode.removeChild(bar)
@@ -117,6 +118,62 @@ mergeSort.addEventListener('click', () => {
   }
 })
 
+const selectionSort = document.getElementById('selection')
+selectionSort.addEventListener('click', () => {
+  const frames = []
+  selectionSortFunction(heights, frames)
+  let swapColor = 'cornflowerblue'
+  let primaryColor = 'pink'
+  let tempHeight
+  for (let i = 0; i < frames.length; i++) {
+    let bar1 = document.getElementById(frames[i][0])
+    let bar2 = document.getElementById(frames[i][1])
+
+    let tempHeight = bar1.style.height
+    setTimeout(() => {
+      bar1.style.backgroundColor = swapColor;
+      bar2.style.backgroundColor = swapColor;
+    }, i * 10);
+
+    switch (frames[i][2]) {
+      case 'primary':
+        setTimeout(() => {
+          bar1.style.backgroundColor = primaryColor
+          bar2.style.backgroundColor = primaryColor
+        }, i * 10)
+        break
+      case 'swap1':
+        setTimeout(() => {
+          bar1.style.height = bar2.style.height
+        }, i * 10)
+        break
+      case 'swap2':
+        setTimeout(() => {
+          bar2.style.height = tempHeight
+        }, i * 10)
+    }
+
+    // if (frames[i][2] === 'switch') {
+    //   setTimeout(() => {
+    //     tempHeight = barOne.height;
+    //     barOne.height = barTwo.height;
+    //   }, i * 10);
+    // }
+    // if (frames[i][2] === 'switch2') {
+    //   setTimeout(() => {
+    //     barTwo.height = tempHeight;
+    //   }, i * 10);
+    // }
+    // if (frames[i][2] === 'primary') {
+    //   setTimeout(() => {
+    //     barOne.backgroundColor = primaryColor;
+    //     barTwo.backgroundColor = primaryColor;
+    //   }, i * 10);
+    // }
+  }
+})
+
+
 
 const bubbleSort = document.getElementById('bubble')
 bubbleSort.addEventListener('click', () => {
@@ -156,48 +213,3 @@ bubbleSort.addEventListener('click', () => {
     }
   }
 })
-
-
-/* Merge Sort Draft*/
-
-// switch(frames[i][2])
-// for (let i = 0; i < newHeights.length; i++) {
-//   const bar = document.getElementById(`${newHeights[i]}px`)
-//   bar.id = `${i}`
-// }
-
-// for (let i = 0; i < heights.length; i++) {
-//   const bar = document.getElementById(`${i}`)
-//   bar.id = bar.style.height
-//   console.log(bar)
-
-//   //id is '__px'!
-// }
-// let frames = []
-// mergeSortFunction(heights, frames)
-// for (let i = 0; i < frames.length; i++) {
-//   switch (frames[i][1]) {
-//     case 'start':
-//       setTimeout(() => {
-//         frames[i][0].forEach((current) => {
-//           const bar = document.getElementById(`${current}px`)
-//           bar.style.backgroundColor = 'cornflowerblue'
-//         })
-//       }, 2000 * i)
-//       break
-//     case 'sort':
-//       setTimeout(() => {
-//         console.log(frames[i])
-//       })
-//       break
-//     case 'end':
-//       setTimeout(() => {
-//         frames[i][0].forEach((current) => {
-//           const bar = document.getElementById(`${current}px`)
-//           bar.style.backgroundColor = 'pink'
-
-//         })
-//       }, 2000 * i)
-//       break
-//   }
-// }

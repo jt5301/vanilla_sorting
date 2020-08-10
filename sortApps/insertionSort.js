@@ -1,5 +1,4 @@
-export default function getInsertionSortAnimations(array) {
-  let frames = []
+export function insertionSortFunction(array, frames) {
   insertionSort(array, frames)
   return frames
 }
