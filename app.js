@@ -17,7 +17,7 @@ const createBar = (id, height) => {
   return bar
 }
 
-let heights = heightGenerator(10)
+let heights = heightGenerator(30)
 
 // initial set up for bars
 for (let i = 0; i < heights.length; i++) {
@@ -27,7 +27,7 @@ for (let i = 0; i < heights.length; i++) {
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  heights = heightGenerator(10)
+  heights = heightGenerator(30)
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
     bar.parentNode.removeChild(bar)
@@ -102,7 +102,6 @@ mergeSort.addEventListener('click', () => {
       case 'sort':
         setTimeout(() => {
           let sortBar = document.getElementById(`${frames[i][0]}`)
-          console.log(frames)
           sortBar.style.height = `${frames[i][1]}px`
         }, 50 * i)
         break
@@ -124,33 +123,31 @@ selectionSort.addEventListener('click', () => {
   selectionSortFunction(heights, frames)
   let swapColor = 'cornflowerblue'
   let primaryColor = 'pink'
-  let tempHeight
+  let tempHeight = 0
   for (let i = 0; i < frames.length; i++) {
     let bar1 = document.getElementById(frames[i][0])
     let bar2 = document.getElementById(frames[i][1])
-
-    let tempHeight = bar1.style.height
     setTimeout(() => {
       bar1.style.backgroundColor = swapColor;
       bar2.style.backgroundColor = swapColor;
-    }, i * 10);
-
+    }, i * 50);
     switch (frames[i][2]) {
       case 'primary':
         setTimeout(() => {
           bar1.style.backgroundColor = primaryColor
           bar2.style.backgroundColor = primaryColor
-        }, i * 10)
+        }, i * 50)
         break
       case 'swap1':
         setTimeout(() => {
+          tempHeight = bar1.style.height
           bar1.style.height = bar2.style.height
-        }, i * 10)
+        }, i * 50)
         break
       case 'swap2':
         setTimeout(() => {
           bar2.style.height = tempHeight
-        }, i * 10)
+        }, i * 50)
     }
 
     // if (frames[i][2] === 'switch') {

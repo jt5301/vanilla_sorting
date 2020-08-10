@@ -3,7 +3,6 @@ export function mergeSortFunction(heights, frames) {
 
   let auxArray = heights.slice()
   mergeSortHelper(heights, auxArray, 0, heights.length - 1, frames)
-  console.log(heights, frames)
   return heights
 }
 
