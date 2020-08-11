@@ -1,6 +1,25 @@
+@font-face {
+  font-family: 'Univers';
+  src:  url('fonts/Univers.woff2') format('woff2'),
+        url('fonts/Univers.woff') format('woff');
+}
 
-.header{
-  font-family:Bembo;
+#header{
+  font-family:'Univers';
+  position:absolute;
+  top: 40px;
+  left: 35px;
+  font-size: 72px;
+  text-align: center;
+  width:300px;
+}
+
+#summary{
+  font-family:'Univers';
+  position:absolute;
+  top: 150px;
+  left: 40px;
+  width:300px;
 }
 
 body {

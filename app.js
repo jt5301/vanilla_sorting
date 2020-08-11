@@ -10,6 +10,7 @@ const container = document.getElementById('mainContainer')
 let primaryColor = 'pink'
 let swapColor = 'cornflowerblue'
 let frameSpeed = 50
+let numOfBars = 30
 
 const createBar = (id, height) => {
   const bar = document.createElement("div");
@@ -21,7 +22,7 @@ const createBar = (id, height) => {
   return bar
 }
 
-let heights = heightGenerator(30)
+let heights = heightGenerator(numOfBars)
 
 // initial set up for bars
 for (let i = 0; i < heights.length; i++) {
@@ -31,7 +32,7 @@ for (let i = 0; i < heights.length; i++) {
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-  heights = heightGenerator(30)
+  heights = heightGenerator(numOfBars)
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
     bar.parentNode.removeChild(bar)
