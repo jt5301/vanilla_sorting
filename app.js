@@ -4,8 +4,12 @@ import { quickSortFunction } from './sortApps/quickSort.js'
 import { insertionSortFunction } from './sortApps/insertionSort.js'
 import { selectionSortFunction } from './sortApps/selectionSort.js'
 import { heightGenerator, buttonTimeouts } from './HelperFunctions.js'
-const container = document.getElementById('mainContainer')
 
+
+const container = document.getElementById('mainContainer')
+let primaryColor = 'pink'
+let swapColor = 'cornflowerblue'
+let frameSpeed = 50
 
 const createBar = (id, height) => {
   const bar = document.createElement("div");
@@ -45,41 +49,41 @@ quickSort.addEventListener('click', () => {
       case 'start':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][0]}`)
-          bar.style.backgroundColor = 'cornflowerblue'
-        }, 50 * i)
+          bar.style.backgroundColor = swapColor
+        }, frameSpeed * i)
         break
       case 'color1':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][1]}`)
-          bar.style.backgroundColor = 'cornflowerblue'
-        }, 50 * i)
+          bar.style.backgroundColor = swapColor
+        }, frameSpeed * i)
         break
       case 'noSwap':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][1]}`)
-          bar.style.backgroundColor = 'pink'
-        }, 50 * i)
+          bar.style.backgroundColor = primaryColor
+        }, frameSpeed * i)
         break
       case 'height1':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][0]}`)
-          bar.style.backgroundColor = 'cornflowerblue'
+          bar.style.backgroundColor = swapColor
           bar.style.height = `${frames[i][3]}px`
-        }, 50 * i)
+        }, frameSpeed * i)
         break
       case 'height2':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][1]}`)
           bar.style.height = `${frames[i][2]}px`
-        }, 50 * i)
+        }, frameSpeed * i)
         break
       case 'frameRecolor':
         setTimeout(() => {
           const bar = document.getElementById(`${frames[i][0]}`)
           const bar2 = document.getElementById(`${frames[i][1]}`)
-          bar.style.backgroundColor = 'pink'
-          bar2.style.backgroundColor = 'pink'
-        }, 50 * i)
+          bar.style.backgroundColor = primaryColor
+          bar2.style.backgroundColor = primaryColor
+        }, frameSpeed * i)
         break
     }
   }
@@ -95,24 +99,56 @@ mergeSort.addEventListener('click', () => {
         setTimeout(() => {
           for (let k = frames[i][0]; k <= frames[i][1]; k++) {
             const bar = document.getElementById(`${k}`)
-            bar.style.backgroundColor = 'cornflowerblue'
+            bar.style.backgroundColor = swapColor
           }
-        }, 50 * i)
+        }, frameSpeed * i)
         break
       case 'sort':
         setTimeout(() => {
           let sortBar = document.getElementById(`${frames[i][0]}`)
           sortBar.style.height = `${frames[i][1]}px`
-        }, 50 * i)
+        }, frameSpeed * i)
         break
       case 'end':
         setTimeout(() => {
           for (let k = frames[i][0]; k <= frames[i][1]; k++) {
             const bar = document.getElementById(`${k}`)
-            bar.style.backgroundColor = 'pink'
+            bar.style.backgroundColor = primaryColor
           }
-        }, 50 * i)
+        }, frameSpeed * i)
         break
+    }
+  }
+})
+
+const insertionSort = document.getElementById('insertion')
+insertionSort.addEventListener('click', () => {
+  const frames = []
+  insertionSortFunction(heights, frames)
+  let tempHeight = 0
+  for (let i = 0; i < frames.length; i++) {
+    let bar1 = document.getElementById(frames[i][0])
+    let bar2 = document.getElementById(frames[i][1])
+    setTimeout(() => {
+      bar1.style.backgroundColor = swapColor;
+      bar2.style.backgroundColor = swapColor;
+    }, frameSpeed * i)
+    if (frames[i][2] === 'switch') {
+      setTimeout(() => {
+        tempHeight = bar1.style.height;
+        bar1.style.height = bar2.style.height;
+      }, frameSpeed * i);
+    }
+    if (frames[i][2] === 'switch2') {
+      setTimeout(() => {
+        bar2.style.height = tempHeight;
+      }, frameSpeed * i);
+    }
+    if (frames[i][2] === 'primary') {
+      setTimeout(() => {
+        bar1.style.backgroundColor = primaryColor;
+        bar2.style.backgroundColor = primaryColor;
+      }, frameSpeed * i);
     }
   }
 })
@@ -121,8 +157,6 @@ const selectionSort = document.getElementById('selection')
 selectionSort.addEventListener('click', () => {
   const frames = []
   selectionSortFunction(heights, frames)
-  let swapColor = 'cornflowerblue'
-  let primaryColor = 'pink'
   let tempHeight = 0
   for (let i = 0; i < frames.length; i++) {
     let bar1 = document.getElementById(frames[i][0])
@@ -130,55 +164,34 @@ selectionSort.addEventListener('click', () => {
     setTimeout(() => {
       bar1.style.backgroundColor = swapColor;
       bar2.style.backgroundColor = swapColor;
-    }, i * 50);
+    }, i * frameSpeed);
     switch (frames[i][2]) {
       case 'primary':
         setTimeout(() => {
           bar1.style.backgroundColor = primaryColor
           bar2.style.backgroundColor = primaryColor
-        }, i * 50)
+        }, i * frameSpeed)
         break
       case 'swap1':
         setTimeout(() => {
           tempHeight = bar1.style.height
           bar1.style.height = bar2.style.height
-        }, i * 50)
+        }, i * frameSpeed)
         break
       case 'swap2':
         setTimeout(() => {
           bar2.style.height = tempHeight
-        }, i * 50)
+        }, i * frameSpeed)
     }
-
-    // if (frames[i][2] === 'switch') {
-    //   setTimeout(() => {
-    //     tempHeight = barOne.height;
-    //     barOne.height = barTwo.height;
-    //   }, i * 10);
-    // }
-    // if (frames[i][2] === 'switch2') {
-    //   setTimeout(() => {
-    //     barTwo.height = tempHeight;
-    //   }, i * 10);
-    // }
-    // if (frames[i][2] === 'primary') {
-    //   setTimeout(() => {
-    //     barOne.backgroundColor = primaryColor;
-    //     barTwo.backgroundColor = primaryColor;
-    //   }, i * 10);
-    // }
   }
 })
-
 
 
 const bubbleSort = document.getElementById('bubble')
 bubbleSort.addEventListener('click', () => {
   const frames = []
   bubbleSortFunction(heights, frames)
-
   buttonTimeouts(frames.length)
-
   let temp = 0
   for (let i = 0; i < frames.length; i++) {
     const bar1 = document.getElementById(frames[i][0])
@@ -186,26 +199,26 @@ bubbleSort.addEventListener('click', () => {
     switch (frames[i][2]) {
       case 'start':
         setTimeout(() => {
-          bar1.style.backgroundColor = 'cornflowerblue'
-          bar2.style.backgroundColor = 'cornflowerblue'
-        }, 50 * i)
+          bar1.style.backgroundColor = swapColor
+          bar2.style.backgroundColor = swapColor
+        }, frameSpeed * i)
         break
       case 'end':
         setTimeout(() => {
-          bar1.style.backgroundColor = 'pink'
-          bar2.style.backgroundColor = 'pink'
-        }, 50 * i)
+          bar1.style.backgroundColor = primaryColor
+          bar2.style.backgroundColor = primaryColor
+        }, frameSpeed * i)
         break
       case 'swap1':
         setTimeout(() => {
           temp = bar1.style.height
           bar1.style.height = bar2.style.height
-        }, 50 * i)
+        }, frameSpeed * i)
         break
       case 'swap2':
         setTimeout(() => {
           bar2.style.height = temp
-        }, 50 * i)
+        }, frameSpeed * i)
         break
     }
   }
