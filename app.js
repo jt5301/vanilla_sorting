@@ -5,7 +5,6 @@ import { insertionSortFunction } from './sortApps/insertionSort.js'
 import { selectionSortFunction } from './sortApps/selectionSort.js'
 import { heightGenerator, buttonTimeouts } from './HelperFunctions.js'
 
-
 const container = document.getElementById('mainContainer')
 let primaryColor = 'pink'
 let swapColor = 'cornflowerblue'
