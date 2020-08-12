@@ -5,7 +5,6 @@
 }
 
 #header{
-  font-family:'Univers';
   position:absolute;
   top: 40px;
   left: 35px;
@@ -15,11 +14,25 @@
 }
 
 #summary{
-  font-family:'Univers';
   position:absolute;
   top: 150px;
   left: 40px;
   width:300px;
+}
+#sortContainer{
+  position:absolute;
+  top:150px;
+  right:75px;
+  width:300px;
+  font-size:32px
+}
+
+#sortTitle{
+  text-decoration: underline;
+}
+
+#sortSummary{
+font-size: 16px;
 }
 
 body {
@@ -28,6 +41,7 @@ body {
 }
 
 #mainContainer{
+  font-family:'Univers';
   display: flex;
   align-items: flex-end;
   height:800px;

@@ -32,6 +32,13 @@ for (let i = 0; i < heights.length; i++) {
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
+
+  const header = document.getElementById('sortTitle')
+  header.innerText = ""
+  const summary = document.getElementById('sortSummary')
+  summary.innerText = ""
+
+
   heights = heightGenerator(numOfBars)
   for (let i = 0; i < heights.length; i++) {
     const bar = document.getElementById(`${i}`)
@@ -43,6 +50,10 @@ reset.addEventListener('click', () => {
 
 const quickSort = document.getElementById('quick')
 quickSort.addEventListener('click', () => {
+  const header = document.getElementById('sortTitle')
+  header.innerText = "This is Quick Sort"
+  const summary = document.getElementById('sortSummary')
+  summary.innerText = "Quick Sort is a divide and conquer algorithm that works by picking an element as a pivot, which is used to split the array into smaller subarrays that are either lower or higher than the pivot. The subarrays are themselves then sorted recursively using the same process. This particular implementation chooses the first element to be the pivot, but you can also choose the last, median, or a random number to start."
   const frames = []
   quickSortFunction(heights, frames)
   for (let i = 0; i < frames.length; i++) {
@@ -92,6 +103,12 @@ quickSort.addEventListener('click', () => {
 
 const mergeSort = document.getElementById('merge')
 mergeSort.addEventListener('click', () => {
+
+  const header = document.getElementById('sortTitle')
+  header.innerText = "This is Merge Sort"
+  const summary = document.getElementById('sortSummary')
+  summary.innerText = "Merge Sort is an efficient divide-and-conquer algorithm that splits up the array into smaller subarrays, sorts them, then merges them back together."
+
   const frames = []
   mergeSortFunction(heights, frames)
   for (let i = 0; i < frames.length; i++) {
@@ -124,6 +141,12 @@ mergeSort.addEventListener('click', () => {
 
 const insertionSort = document.getElementById('insertion')
 insertionSort.addEventListener('click', () => {
+
+  const header = document.getElementById('sortTitle')
+  header.innerText = "This is Insertion Sort"
+  const summary = document.getElementById('sortSummary')
+  summary.innerText = "Insertion sort is a comparison sort that, true to its name, inserts each element into its correct place by comparing itself to elements that came before it. It does this insertion process for each element as it steps through the array, which will eventually build the sorted list up."
+
   const frames = []
   insertionSortFunction(heights, frames)
   let tempHeight = 0
@@ -156,6 +179,13 @@ insertionSort.addEventListener('click', () => {
 
 const selectionSort = document.getElementById('selection')
 selectionSort.addEventListener('click', () => {
+
+  const header = document.getElementById('sortTitle')
+  header.innerText = "This is Selection Sort"
+  const summary = document.getElementById('sortSummary')
+  summary.innerText = "Selection sort here in particular works by finding the smallest element with each iteration. It then places that smallest element in its correct order. Selection sort can also be written to sort largest elements fist."
+
+
   const frames = []
   selectionSortFunction(heights, frames)
   let tempHeight = 0
@@ -190,6 +220,10 @@ selectionSort.addEventListener('click', () => {
 
 const bubbleSort = document.getElementById('bubble')
 bubbleSort.addEventListener('click', () => {
+  const header = document.getElementById('sortTitle')
+  header.innerText = "This is Bubble Sort"
+  const summary = document.getElementById('sortSummary')
+  summary.innerText = "This sort loops through the list to compare adjacent elements. If they're in the wrong order, they get swapped. This is repeated throughout until the list is sorted. You'll notice a 'bubbling' effect of larger elements getting pushed to the right, which is where the name for the sort is derived. This is usually pretty slow and impractical to use as a sort."
   const frames = []
   bubbleSortFunction(heights, frames)
   buttonTimeouts(frames.length)
