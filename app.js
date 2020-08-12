@@ -32,12 +32,10 @@ for (let i = 0; i < heights.length; i++) {
 
 const reset = document.getElementById('reset')
 reset.addEventListener('click', () => {
-
   const header = document.getElementById('sortTitle')
   header.innerText = ""
   const summary = document.getElementById('sortSummary')
   summary.innerText = ""
-
 
   heights = heightGenerator(numOfBars)
   for (let i = 0; i < heights.length; i++) {
@@ -60,6 +58,7 @@ quickSort.addEventListener('click', () => {
     switch (frames[i][frames[i].length - 1]) {
       case 'start':
         setTimeout(() => {
+          console.log('hello')
           const bar = document.getElementById(`${frames[i][0]}`)
           bar.style.backgroundColor = swapColor
         }, frameSpeed * i)
@@ -99,6 +98,7 @@ quickSort.addEventListener('click', () => {
         break
     }
   }
+  buttonTimeouts(frames.length, frameSpeed)
 })
 
 const mergeSort = document.getElementById('merge')
@@ -137,6 +137,7 @@ mergeSort.addEventListener('click', () => {
         break
     }
   }
+  buttonTimeouts(frames.length, frameSpeed)
 })
 
 const insertionSort = document.getElementById('insertion')
@@ -149,6 +150,7 @@ insertionSort.addEventListener('click', () => {
 
   const frames = []
   insertionSortFunction(heights, frames)
+
   let tempHeight = 0
   for (let i = 0; i < frames.length; i++) {
     let bar1 = document.getElementById(frames[i][0])
@@ -175,6 +177,7 @@ insertionSort.addEventListener('click', () => {
       }, frameSpeed * i);
     }
   }
+  buttonTimeouts(frames.length, frameSpeed)
 })
 
 const selectionSort = document.getElementById('selection')
@@ -215,6 +218,7 @@ selectionSort.addEventListener('click', () => {
         }, i * frameSpeed)
     }
   }
+  buttonTimeouts(frames.length, frameSpeed)
 })
 
 
@@ -226,7 +230,6 @@ bubbleSort.addEventListener('click', () => {
   summary.innerText = "This sort loops through the list to compare adjacent elements. If they're in the wrong order, they get swapped. This is repeated throughout until the list is sorted. You'll notice a 'bubbling' effect of larger elements getting pushed to the right, which is where the name for the sort is derived. This is usually pretty slow and impractical to use as a sort."
   const frames = []
   bubbleSortFunction(heights, frames)
-  buttonTimeouts(frames.length)
   let temp = 0
   for (let i = 0; i < frames.length; i++) {
     const bar1 = document.getElementById(frames[i][0])
@@ -257,4 +260,6 @@ bubbleSort.addEventListener('click', () => {
         break
     }
   }
+  buttonTimeouts(frames.length, frameSpeed)
 })
+// buttonTimeouts(frames.length)

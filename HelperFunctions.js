@@ -18,7 +18,7 @@ export function heightGenerator(amt) {// height between 1 & 750
 
 }
 
-export function buttonTimeouts(frameLength) {
+export function buttonTimeouts(frameLength, frameSpeed) {
   const nodes = document.getElementById('buttons').childNodes
   const buttons = []
   for (let node of nodes) {
@@ -34,5 +34,5 @@ export function buttonTimeouts(frameLength) {
     buttons.forEach((current) => {
       current.disabled = false
     })
-  }, 10 * frameLength)
+  }, frameSpeed * frameLength)
 }
