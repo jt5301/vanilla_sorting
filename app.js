@@ -185,7 +185,7 @@ selectionSort.addEventListener('click', () => {
   const header = document.getElementById('sortTitle')
   header.innerText = "This is Selection Sort"
   const summary = document.getElementById('sortSummary')
-  summary.innerText = "Selection sort here in particular works by finding the smallest element with each iteration. It then places that smallest element in its correct order. Selection sort can also be written to sort largest elements fist."
+  summary.innerText = "Selection sort here in particular works by finding the smallest element with each iteration. It then places that smallest element in its correct order. Selection sort can also be written to sort largest elements first."
 
 
   const frames = []
